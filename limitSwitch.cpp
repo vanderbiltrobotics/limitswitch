@@ -10,11 +10,23 @@ extern "C" {
 int main()
 {
 	rc_initialize();
-	rc_set_pinmux_mode(2, PINMUX_GPIO); //GPIO3_2
-	rc_gpio_export(2);
-	rc_gpio_set_dir(2, OUTPUT_PIN);
+	unsigned int pin = 98; //For GPIOX_Y, the absolute pin number is 32*X+Y. In this case, 32*3+2 = 98.
+	//rc_set_pinmux_mode(pin, PINMUX_GPIO_PU); //this line also seems to work. Using default for now because I'm not totally clear on what Push Up is.
+	rc_set_default_pinmux();
+	rc_gpio_export(pin);
+	rc_gpio_set_dir(pin, INPUT_PIN);
 
-	printf("This is maybe a value: %f\n", rc_gpio_get_value(2));
+	printf("This is maybe a value: %f\n", rc_gpio_get_value(pin)); //No idea why this line doesn't work.
+	if(rc_gpio_get_value(pin) == HIGH) {
+		printf("VALUE CURRENTLY HIGH\n");
+	}
+	else if (rc_gpio_get_value(pin) == LOW) {
+		printf("VALUE CURRENTLY LOW\n");
+	}
+	else {
+		printf("Something's wrong\n");
+	}
+	rc_gpio_unexport(pin);
 
 
 
