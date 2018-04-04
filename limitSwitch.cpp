@@ -16,7 +16,7 @@ int main()
 	rc_gpio_export(pin);
 	rc_gpio_set_dir(pin, INPUT_PIN);
 
-	printf("This is maybe a value: %f\n", rc_gpio_get_value(pin)); //No idea why this line doesn't work.
+	printf("This is maybe a value: %d\n", rc_gpio_get_value(pin)); //No idea why this line doesn't work.
 	if(rc_gpio_get_value(pin) == HIGH) {
 		printf("VALUE CURRENTLY HIGH\n");
 	}
