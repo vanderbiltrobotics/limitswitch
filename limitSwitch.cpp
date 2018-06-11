@@ -15,6 +15,7 @@ int main()
 	rc_set_default_pinmux();
 	rc_gpio_export(pin);
 	rc_gpio_set_dir(pin, INPUT_PIN);
+	
 
 	//while(true) {
 	printf("This is maybe a value: %d\n", rc_gpio_get_value(pin));
